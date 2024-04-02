@@ -1,0 +1,6 @@
+gdb/.vscode
+gdb/*.dSYM
+.DS_Store
+gdb/practice_01
+gdb/practice_02
+gdb/practice_03
