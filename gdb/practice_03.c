@@ -6,7 +6,7 @@ int main(void)
 {
     int	    i = 0, num = 0;
     double  j = 0;
-    char    *str = NULL;
+    char    *str = (char*) calloc(20, sizeof(char));    // solve segmentation fault
 
     printf("Enter the number: ");
     scanf("%d", &num);
@@ -19,6 +19,8 @@ int main(void)
     strcpy(str, "Success!");
     printf("%s\n", str);
 
+    free(str);
+    
     return 0;
 }
 

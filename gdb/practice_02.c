@@ -2,12 +2,12 @@
  
 int main()
 {
-    int num, i, j;
+    int num, i, j = 1;
 
     printf("Enter the number: ");
     scanf("%d", &num);
 
-    for (i = 1; i < num; i++)
+    for (i = 1; i <= num; i++)
 	j *= i;
 
     printf("The factorial of %d is %d\n", num, j);
@@ -15,4 +15,3 @@ int main()
     return 0;
 }
      
-
