@@ -2,6 +2,9 @@
 #include <stdlib.h> // exit
 #include <unistd.h> // fork, getpid
 
+// to execute:~$ ./p1
+// fork 사용해보기, 둘 중 무엇이 먼저 실행될지 모름
+
 int main(int argc, char *argv[])
 {
     printf("hello world (pid:%d)\n", (int) getpid());

@@ -1,30 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>     // exit
-#include <unistd.h>     // fork, close
+#include <unistd.h>     // getpid, fork, execvp
 #include <string.h>     // strdup
-#include <fcntl.h>      // open(flags, modes)
 #include <sys/wait.h>
+
+// to execute:~$ ./p3
+// exec 사용해보기, wc가 실행되어 파일의 워드 개수 반환
 
 int main(int argc, char *argv[])
 {
+    printf("hello world (pid:%d)\n", (int) getpid());
     int ret_fork = fork();
     if (ret_fork < 0) {
         // fork failed; exit
         fprintf(stderr, "fork failed\n");
         exit(1);
     } else if (ret_fork == 0) {
-        // child: redirect standard output to a file
-        close(STDOUT_FILENO); 
-        open("./p4.output", O_CREAT|O_WRONLY|O_TRUNC, S_IRWXU);
-        // now exec "wc"...
+        // child (new process)
+        printf("hello, I am child (pid:%d)\n", (int) getpid());
         char *myargs[3];
         myargs[0] = strdup("wc");   // program: "wc" (word count)
-        myargs[1] = strdup("p4.c"); // argument: file to count
+        myargs[1] = strdup("p3.c"); // argument: file to count
         myargs[2] = NULL;           // marks end of array
         execvp(myargs[0], myargs);  // runs word count
+        printf("this shouldn't print out");
     } else {
         // parent goes down this path (original process)
-        wait(NULL);
+        int ret_wait = wait(NULL);
+        printf("hello, I am parent of %d (ret_wait:%d) (pid:%d)\n",
+	       ret_fork, ret_wait, (int) getpid());
     }
     return 0;
 }

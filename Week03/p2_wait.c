@@ -3,6 +3,9 @@
 #include <unistd.h>     // getpid, fork, sleep
 #include <sys/wait.h>
 
+// to execute:~$ ./p2
+// wait 사용해보기, 항상 자식이 먼저 실행 및 종료됨
+
 int main(int argc, char *argv[])
 {
     printf("hello world (pid:%d)\n", (int) getpid());
