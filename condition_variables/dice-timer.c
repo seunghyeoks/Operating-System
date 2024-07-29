@@ -4,7 +4,7 @@
 #include <time.h> // time
 #include <unistd.h> // usleep
 
-#define NLOOPS 1
+#define NLOOPS 6
 
 int num = 0;
 int generated = 0;
@@ -41,10 +41,10 @@ int main()
 	pthread_mutex_lock(&mutex_gen);
 	while (!generated)
 	    pthread_cond_wait(&cond_gen, &mutex_gen);
-//	pthread_mutex_lock(&mutex_num);
+//	  pthread_mutex_lock(&mutex_num);
 	printf("parent: %d\n", num);
 	generated = 0;
-//	pthread_mutex_unlock(&mutex_num);
+//	  pthread_mutex_unlock(&mutex_num);
 	pthread_mutex_unlock(&mutex_gen);
     }
 //    pthread_join(t1, NULL);
