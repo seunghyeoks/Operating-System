@@ -64,7 +64,7 @@ void *consumer(void *arg)
     int id = cons_id++;
     sem_post(&id_lock);
     for (int i = 0; i < CONS_ITEM; ++i) {
-//	usleep(10);
+//  usleep(10);
 	sem_wait(&sem_cons);
 	sem_wait(&cnt_lock);
 	int ret = get();

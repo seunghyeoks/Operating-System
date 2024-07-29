@@ -32,15 +32,18 @@ int main()
 {
     printf("main[%u]: begin (counter = %d)\n", (unsigned) pthread_self(), counter);
     pthread_t t1;
+    //pthread_t t2;
     myarg ma1 = {"A", end };
+    //myarg ma2 = {"B", end };
     pthread_create(&t1, NULL, mythread, &ma1);
+    //pthread_create(&t2, NULL, mythread, &ma2);
     pthread_mutex_lock(&mutex);
     for (int i = 0; i < end; i++)
 	counter++; // critical section
     pthread_mutex_unlock(&mutex);
     pthread_join(t1, (void **) &ma1);
+    //pthread_join(t2, (void **) &ma2);
     printf("main[%u]: done (counter = %d) (ma1.val = %d)\n", 
 	(unsigned) pthread_self(), counter, ma1.val);
     return 0;
 }
-
